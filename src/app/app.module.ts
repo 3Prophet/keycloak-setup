@@ -8,7 +8,7 @@ import {initializer} from './utils/app-init';
 import { AppComponent } from './app.component';
 import { MessageComponent } from './message/message.component';
 import { AppAuthGuardService } from './auth/appauthguard.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule  } from '@angular/common/http';
 import { AuthInterceptorService } from './auth/aut-interceptor.service';
 
 const routes: Routes = [
@@ -23,6 +23,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     KeycloakAngularModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

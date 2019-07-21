@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ import { KeycloakService } from 'keycloak-angular';
 export class AppComponent implements OnInit{
   title = 'frontend';
   private userName: string;
+  private url="http://localhost:8011/clientcompanies-ws/clientcompanies"
+  private message: string = "";
 
-  constructor(private keycloakService: KeycloakService) {
+  constructor(private keycloakService: KeycloakService, private http: HttpClient) {
 
   }
   ngOnInit() {
@@ -19,6 +22,14 @@ export class AppComponent implements OnInit{
 
   onLogout() {
     this.keycloakService.logout();
+  }
+
+  onServiceCall() {
+    this.http.get(this.url).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    );
   }
 
   }
